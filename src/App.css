@@ -28,15 +28,36 @@ button {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  z-index: 2;
   background:
     radial-gradient(
       circle at 50% 35%,
-      #1c223b 0%,
-      #131b35 40%,
-      #070b18 75%,
-      #03050c 100%
+      #11172a 0%,
+      #0b1124 40%,
+      #030711 75%,
+      #01030a 100%
     );
   color: white;
+  transition: opacity 5.5s ease-in-out;
+}
+
+.intro-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.village-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 5.5s ease-in-out;
+}
+
+.village-stage-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .content, .started {
