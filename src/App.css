@@ -1,0 +1,280 @@
+:root {
+  --moon-size: 800px
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.intro {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      #1c223b 0%,
+      #131b35 40%,
+      #070b18 75%,
+      #03050c 100%
+    );
+  color: white;
+}
+
+.content, .started {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  gap: 50px;
+  z-index: 9998;
+  animation: appear 3s ease;
+}
+
+.content > .small-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 30px;
+  opacity: 0.6;
+}
+
+.content > h1 {
+  text-transform: uppercase;
+  font-size: 80px;
+  opacity: 0.9;
+}
+
+.content > .description {
+  text-transform: uppercase;
+  font-size: 30px;
+  opacity: 0.7;
+}
+
+.content > button {
+  padding: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border: 1px solid #1c223b;
+  box-shadow: 0 0 10px 0 black;
+  background-color: aliceblue;
+  color: black;
+  font-weight: bold;
+  border-radius: 15px;
+  transition: all 0.15s ease-in-out;
+}
+
+.content > button:active {
+  transform: scale(0.96);
+  opacity: 0.75;
+}
+
+.started {
+  font-size: 40px;
+  letter-spacing: 2px;
+  animation: appear 5s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -35%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+/* STAR */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Giúp người dùng vẫn click được vào nút bấm, văn bản bên dưới */
+  z-index: 9990;        /* Đảm bảo sao luôn nằm trên cùng (hoặc đổi thành -1 nếu muốn làm nền) */
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+  animation: blink 2s infinite ease-in-out;
+}
+
+.size-1 { width: 2px; height: 2px; }
+.size-2 { width: 3px; height: 3px; }
+.size-3 { width: 4px; height: 4px; background-color: #a8a47b; }
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+  }
+}
+
+/* END STAR */
+
+
+/* MOON */
+.moon {
+  position: fixed;
+  top: -50%;            
+  right: -25%;
+  width: var(--moon-size);        
+  height: var(--moon-size);
+  border-radius: 50%; 
+
+  background: radial-gradient(circle, #fffae6 0%, #ffea75 60%, #ffd000 100%);
+
+  /* Hiệu ứng tỏa hào quang (Glow) nhiều tầng xung quanh mặt trăng */
+  box-shadow: 
+    0 0 30px rgba(255, 234, 117, 0.7),  /* Lớp sáng lõi sát mặt trăng */
+    0 0 60px rgba(255, 208, 0, 0.4),    /* Lớp ánh vàng lan tỏa rộng */
+    0 0 100px rgba(255, 208, 0, 0.2);   /* Ánh hào quang mờ dịu ra không gian */
+
+  /* Hiệu ứng nhấp nháy/thở nhẹ (Breathing effect) tăng độ sống động */
+  animation: moonGlow 4s infinite ease-in-out;
+  
+  z-index: 9991;
+  pointer-events: none;
+}
+
+@keyframes moonGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+    box-shadow: 
+      0 0 30px rgba(255, 234, 117, 0.7),
+      0 0 60px rgba(255, 208, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.02); /* Trăng hơi nở rộng nhẹ khi sáng cực đại */
+    filter: brightness(1.15); /* Tăng độ rực sáng */
+    box-shadow: 
+      0 0 45px rgba(255, 234, 117, 0.9),
+      0 0 90px rgba(255, 208, 0, 0.6),
+      0 0 130px rgba(255, 208, 0, 0.3);
+  }
+}
+/* END MOON */
+
+/* START CLOUD */
+.clouds {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9992;
+  overflow: hidden;
+}
+
+/* Tạo hình dáng đám mây bồng bềnh bằng box-shadow */
+.cloud {
+  position: absolute;
+  left: -190px; /* Bắt đầu xuất hiện từ ngoài rìa màn hình */
+  width: 180px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.7 );
+  border-radius: 50px;
+  
+  /* Tạo hiệu ứng mây mờ ảo dưới ánh trăng */
+  filter: blur(10px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  
+  /* Kích hoạt chuyển động bay */
+  animation: floatCloud linear infinite;
+}
+
+/* Dùng pseudo-elements :before và :after để tạo các khối tròn lồi lên của đám mây */
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 90px;
+  height: 90px;
+  top: -45px;
+  left: 25px;
+}
+
+.cloud::after {
+  width: 75px;
+  height: 75px;
+  top: -25px;
+  right: 25px;
+}
+
+/* Đa dạng hóa tốc độ bay và thời gian xuất hiện */
+.speed-slow { animation-duration: 45s; }
+.speed-normal { animation-duration: 35s; }
+.speed-fast { animation-duration: 25s; }
+
+.delay-1 { animation-delay: 5s; }
+.delay-2 { animation-delay: 45s; }
+.delay-3 { animation-delay: 8s; }
+
+/* Định nghĩa hiệu ứng mây bay từ phải sang trái màn hình */
+@keyframes floatCloud {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-300px);
+  }
+}
+
+.cloud:nth-child(1) {
+  top: 10%;
+}
+
+.cloud:nth-child(2) {
+  top: 30%;
+}
+
+.cloud:nth-child(3) {
+  top: 60%;
+}
+
+.cloud:nth-child(4) {
+  top: 80%;
+}
